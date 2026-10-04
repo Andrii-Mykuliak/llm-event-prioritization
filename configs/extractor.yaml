@@ -1,0 +1,52 @@
+# Конфігурація модуля формування event windows (docs/event_windows_spec.md, §42).
+# Після pilot (§50–51) значення в блоці FROZEN не змінюються на основі поведінки Qwen.
+
+dataset_version: "1.0"
+
+source:
+  season: 2025
+  session: "R"
+  # Правило вибору гонок (§51): фіксований перелік раундів сезону.
+  # pilot: 3 гонки; main: 12 гонок (затверджується після pilot).
+  pilot_rounds: [4, 5, 6]
+  main_rounds: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+window:
+  duration_seconds: 10
+  min_events: 5
+
+events:
+  sector_cross:
+    sectors: [1, 2]
+  lap_complete: true
+  pit_in: true
+  pit_out: true
+
+type_outlier:
+  min_majority_count: 4
+  minority_count: 1
+  # §22: пріоритетні (прості) патерни; інші комбінації допускаються, але відбираються пізніше.
+  preferred_minority_types: ["PitIn", "PitOut"]
+
+numeric_outlier:
+  min_group_size: 5
+  method: mad
+  threshold: 2.5
+  mad_scale: 1.4826        # узгоджує MAD зі стандартним відхиленням для нормального розподілу
+  mad_floor_ms: 50         # захист від MAD≈0 у малих групах (5–7 значень)
+  # Додано після pilot: без нього 0.2%-відхилення на колі проходили як «викиди».
+  min_rel_deviation: 0.005
+  # Страти robust z для sampling (response curve): [2.5,4) [4,7) [7,inf)
+  z_strata: [4.0, 7.0]
+
+sampling:
+  random_seed: 42
+  max_windows_per_race: 10     # на одну experimental family
+  forbid_event_reuse: true
+  target_per_family: 45        # §37: 35–50 незалежних seeds на питання
+
+density:
+  strata:
+    low: [5, 7]
+    medium: [8, 12]
+    high: [13, null]

@@ -1,0 +1,51 @@
+# Конфігурація downstream-модуля експерименту (make_trials.py, run_llm.py, analyze.py).
+# Екстрактор (build_dataset.py) цей файл не читає: prompt, labels і permutations — поза його межами (§3.2).
+
+experiment_version: "1.1"   # 1.1: anon drivers, no position, numerical = один comparison class
+random_seed: 20250927
+
+trials:
+  # Керовані позиції focal event у списку (частка від довжини списку): початок, 1/4, середина, 3/4, кінець.
+  # Це і є permutation control, і водночас вимірювання ефекту подання (serial position).
+  focal_positions: [0.0, 0.25, 0.5, 0.75, 1.0]
+  label_alphabet: "BCDFGHJKLMNPQRSTVWXZ"   # без голосних -> labels не утворюють слів
+  label_length: 3
+  show_offsets: false          # моделі не показуються часові зсуви; порядок подання — довільний
+  # Рішення А. В. Микуляка 30.09.2026: пілоти анонімізовані (D01, D02, … — випадкове призначення в межах trial),
+  # позиція в гонці моделі не показується. Реальні значення — у trial.hidden_attrs.
+  driver_repr: anon            # code (VER, NOR) | anon (D01..D20)
+  hidden_fields: ["position"]
+
+density:
+  source_family: type_outlier  # focal = подія-меншість B, фон = події типу A
+  background_levels: [4, 9, 19]   # A×4+B, A×9+B, A×19+B
+  max_context_seconds: 60      # добір реальних фонових подій того ж типу з попередніх 60 с
+
+prompt:
+  # Шаблон однаковий для всіх families і рівнів density (фон density може виходити за межі 10 с,
+  # тому тривалість інтервалу в prompt не називається).
+  template: |
+    Below are events recorded during a short time interval of a Formula 1 race.
+    The events are listed in arbitrary order. Each event has a unique id.
+
+    Events:
+    {events}
+
+    Select the {k} events that are most important to report right now.
+    Answer with the {k} ids only, most important first, separated by commas. Do not explain.
+  k: 3
+
+inference:
+  backend: ollama
+  host: "http://localhost:11434"
+  # Лише гібридні Qwen3 (квітень 2025) з однаковим шаблоном і підтримкою /no_think.
+  # УВАГА: тег "qwen3:4b" в Ollama тепер = Qwen3-4B-Thinking-2507 (лише reasoning, інше покоління) —
+  # його НЕ використовувати; гібридна 4B має тег "qwen3:4b-q4_K_M" (перевірено 27.09.2026 за маніфестами).
+  models: ["qwen3:4b-q4_K_M", "qwen3:8b", "qwen3:14b"]
+  think: false                 # вимкнути reasoning-режим Qwen3 (однакові умови для всіх моделей)
+  options:
+    temperature: 0
+    seed: 42
+    num_ctx: 4096
+    num_predict: 48
+  timeout_seconds: 300

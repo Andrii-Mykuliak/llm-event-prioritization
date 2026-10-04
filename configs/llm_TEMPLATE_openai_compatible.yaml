@@ -1,0 +1,8 @@
+# Any server that speaks the OpenAI chat-completions API (vLLM, LM Studio, llama.cpp server, a hosted API ...).
+name: my-hosted-llm
+short_label: HOST
+backend: openai_compatible
+model: model-name-on-the-server
+host: http://localhost:8000/v1        # base URL (the client appends /chat/completions)
+api_key_env: MY_API_KEY               # name of the environment variable that holds the key (never write the key here)
+# extra_body: {chat_template_kwargs: {enable_thinking: false}}   # server-specific switch that turns thinking off

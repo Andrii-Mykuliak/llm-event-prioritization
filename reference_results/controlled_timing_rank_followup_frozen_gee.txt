@@ -1,0 +1,33 @@
+## top3 ~ C(content, Treatment('original')) * C(position, Treatment('first')) + C(model, Treatment('qwen3:4b-q4_K_M'))
+(n=737, clusters=42)
+                                                                                         OR   CI_lo    CI_hi       p
+Intercept                                                                            0.5691  0.3210   1.0089  0.0537
+C(content, Treatment('original'))[T.faster]                                          2.2771  1.4302   3.6254  0.0005
+C(content, Treatment('original'))[T.slower]                                          0.1207  0.0481   0.3030  0.0000
+C(position, Treatment('first'))[T.last]                                              6.8117  4.5149  10.2769  0.0000
+C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:14b]                                  0.7394  0.4341   1.2595  0.2665
+C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:8b]                                   0.9500  0.5922   1.5238  0.8314
+C(content, Treatment('original'))[T.faster]:C(position, Treatment('first'))[T.last]  1.7872  0.8098   3.9446  0.1506
+C(content, Treatment('original'))[T.slower]:C(position, Treatment('first'))[T.last]  1.7228  0.6785   4.3749  0.2526
+
+## top3 ~ C(content, Treatment('original')) * C(position, Treatment('first')) * C(model, Treatment('qwen3:4b-q4_K_M'))
+(n=737, clusters=42)
+                                                                                                                                              OR   CI_lo    CI_hi       p
+Intercept                                                                                                                                 0.4000  0.2048   0.7813  0.0073
+C(content, Treatment('original'))[T.faster]                                                                                               1.0431  0.5911   1.8407  0.8843
+C(content, Treatment('original'))[T.slower]                                                                                               0.3512  0.1437   0.8583  0.0217
+C(position, Treatment('first'))[T.last]                                                                                                  23.7500  7.8466  71.8866  0.0000
+C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:14b]                                                                                       1.8750  0.9341   3.7637  0.0770
+C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:8b]                                                                                        1.0697  0.4875   2.3473  0.8665
+C(content, Treatment('original'))[T.faster]:C(position, Treatment('first'))[T.last]                                                       2.0183  0.4148   9.8198  0.3843
+C(content, Treatment('original'))[T.slower]:C(position, Treatment('first'))[T.last]                                                       0.4870  0.1402   1.6919  0.2575
+C(content, Treatment('original'))[T.faster]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:14b]                                           4.0905  1.5174  11.0268  0.0054
+C(content, Treatment('original'))[T.slower]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:14b]                                           0.1071  0.0183   0.6258  0.0131
+C(content, Treatment('original'))[T.faster]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:8b]                                            2.7344  1.3368   5.5930  0.0059
+C(content, Treatment('original'))[T.slower]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:8b]                                            0.1698  0.0341   0.8454  0.0304
+C(position, Treatment('first'))[T.last]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:14b]                                               0.0832  0.0256   0.2710  0.0000
+C(position, Treatment('first'))[T.last]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:8b]                                                0.4511  0.1108   1.8359  0.2663
+C(content, Treatment('original'))[T.faster]:C(position, Treatment('first'))[T.last]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:14b]   0.5388  0.0949   3.0598  0.4853
+C(content, Treatment('original'))[T.slower]:C(position, Treatment('first'))[T.last]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:14b]   7.7885  1.1081  54.7415  0.0391
+C(content, Treatment('original'))[T.faster]:C(position, Treatment('first'))[T.last]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:8b]    1.4882  0.3063   7.2301  0.6220
+C(content, Treatment('original'))[T.slower]:C(position, Treatment('first'))[T.last]:C(model, Treatment('qwen3:4b-q4_K_M'))[T.qwen3:8b]    6.4499  0.8003  51.9830  0.0800

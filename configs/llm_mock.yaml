@@ -1,0 +1,6 @@
+# Offline stand-in used for the pipeline test and for the notebook dry run. Produces no scientific result.
+name: mock-uniform
+short_label: MOCK
+backend: mock
+model: mock
+mock_mode: uniform      # uniform | fastest | last

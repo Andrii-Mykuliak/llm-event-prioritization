@@ -1,0 +1,7 @@
+# Copy this file, rename it and change the three lines marked CHANGE. Everything else keeps the frozen inference settings.
+name: my-llm            # CHANGE: results folder name, used in every table
+short_label: MY         # CHANGE: label in figures (keep it short)
+backend: ollama
+model: llama3.1:8b      # CHANGE: the tag shown by `ollama list`
+# host: http://localhost:11434
+# options: {temperature: 0, seed: 42, num_ctx: 4096, num_predict: 48}   # defaults = frozen; deviations are recorded in run_meta.json

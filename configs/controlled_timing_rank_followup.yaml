@@ -1,0 +1,26 @@
+# Phase II p2r-1.1 — RANK-BASED follow-up до p2r-1.0 (ініційовано 04.10.2026 за результатами p2r-1.0).
+# p2r-1.0 показав, що зсув ±2,5 robust scale у 39/44 вікнах не змінює ранг focal, тож H2 («швидше = важливіше»)
+# не перевірено причинно. Тут faster/slower гарантовано роблять focal найшвидшим / найповільнішим у списку.
+# Усе інше — як у p2r-1.0: ті самі 45 Phase I numerical windows, schema, поля, prompt, inference, правило плаузибельності.
+
+experiment_version: "p2r-1.1"
+random_seed: 20251003            # той самий, що в p2r-1.0 → той самий порядок фону, labels і D-ідентифікатори
+trial_prefix: "p2rR"
+results_dir: "results_rank"
+report_name: "PHASE2_RANK_CHECK_FOR_PAN_MYKULYAK.md"
+
+source:
+  phase1_dataset: "../dataset"
+  phase1_experiment_config: "../experiment.yaml"
+  phase1_seed_windows_sha256: "846ac55cc45f53883c096a38107218d5d4c340f889d799385247c916dd80a5c9"
+  family: numerical_outlier
+
+manipulation:
+  rule: R
+  # faster = min(original, min фону) − ε;  slower = max(original, max фону) + ε;  ε = epsilon_scale · robust scale фону
+  R: {epsilon_scale: 1.0}
+  B: {k: 2.5, mad_scale: 1.4826, mad_floor_ms: 50, scale_from: background}   # масштаб (1,4826 · MAD, floor 50 мс) — як у p2r-1.0
+  plausibility: race_class_observed_range
+
+positions: ["first", "last"]
+content_conditions: ["original", "faster", "slower"]

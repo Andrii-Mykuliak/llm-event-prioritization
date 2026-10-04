@@ -1,0 +1,5 @@
+name: qwen3-8b
+short_label: 8B
+display_name: Qwen3 8B
+backend: ollama
+model: qwen3:8b

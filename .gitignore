@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.fastf1_cache/
+results/*
+!results/README.txt
+outputs/latest__*
+outputs/*_smoke/
+.ipynb_checkpoints/
+outputs/notebook__*
+.pytest_cache/

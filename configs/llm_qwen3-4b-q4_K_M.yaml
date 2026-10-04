@@ -1,0 +1,5 @@
+name: qwen3-4b-q4_K_M
+short_label: 4B
+display_name: Qwen3 4B (Q4_K_M)
+backend: ollama
+model: qwen3:4b-q4_K_M

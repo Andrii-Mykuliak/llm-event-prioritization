@@ -1,0 +1,17 @@
+# Versions used for the reference results (Python 3.12-3.14 work). Rebuilding inputs from scratch needs fastf1 and network access.
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+statsmodels>=0.14
+patsy>=0.5.6
+matplotlib>=3.8
+pillow>=10
+pyyaml>=6
+requests>=2.31
+fastf1==3.8.3          # only for `python -m saliency_inputs build --download`
+# notebook and tests
+jupyterlab>=4
+ipykernel>=6
+nbformat>=5
+nbconvert>=7
+pytest>=8

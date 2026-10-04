@@ -1,0 +1,14 @@
+[
+  {
+    "source_seed_window_id": "2025_BRITISH_R_03547557",
+    "reason": "implausible slower (outside [28701; 59547] ms of the class in the race)"
+  },
+  {
+    "source_seed_window_id": "2025_DUTCH_R_07814751",
+    "reason": "implausible faster (outside [25567; 50174] ms of the class in the race)"
+  },
+  {
+    "source_seed_window_id": "2025_EMILIA_ROMAGNA_R_03617949",
+    "reason": "implausible slower (outside [77988; 85766] ms of the class in the race)"
+  }
+]

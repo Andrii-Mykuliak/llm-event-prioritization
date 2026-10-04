@@ -1,0 +1,5 @@
+name: qwen3-14b
+short_label: 14B
+display_name: Qwen3 14B
+backend: ollama
+model: qwen3:14b

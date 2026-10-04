@@ -1,0 +1,40 @@
+{
+  "dataset_version": "1.0",
+  "extractor_version": "1.0.0",
+  "fastf1_version": "3.8.3",
+  "config_hash": "6436d2615ea44efd",
+  "stage": "main",
+  "sessions_processed": 12,
+  "races": [
+    "2025_BAHRAIN_R",
+    "2025_SAUDI_ARABIAN_R",
+    "2025_MIAMI_R",
+    "2025_EMILIA_ROMAGNA_R",
+    "2025_MONACO_R",
+    "2025_SPANISH_R",
+    "2025_CANADIAN_R",
+    "2025_AUSTRIAN_R",
+    "2025_BRITISH_R",
+    "2025_BELGIAN_R",
+    "2025_HUNGARIAN_R",
+    "2025_DUTCH_R"
+  ],
+  "primitive_events": 41947,
+  "candidate_windows": 10627,
+  "seed_windows": 90,
+  "sampling_report": {
+    "type_outlier": {
+      "selected": 45,
+      "target": 45,
+      "pool": 6300,
+      "target_met": true
+    },
+    "numerical_outlier": {
+      "selected": 45,
+      "target": 45,
+      "pool": 5187,
+      "target_met": true
+    }
+  },
+  "validation_errors": 0
+}
